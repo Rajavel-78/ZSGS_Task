@@ -1,0 +1,34 @@
+package easyproblems;
+
+import java.util.Arrays;
+
+public class MinimumSwapString {
+
+	public static void main(String[] args) {
+		MinimumSwapString minimumSwapString=new MinimumSwapString();
+		String str="abedba";
+		minimumSwapString.swapString(str);
+
+	}
+
+	private void swapString(String str) {
+		String[] str_Split=str.split("");
+		StringBuilder build=new StringBuilder(str);
+		build=build.reverse();
+		String a=build.toString();
+		System.out.println(build);
+		if(a.equals(str)) {
+			System.out.println(0);
+		}else {
+		int count=0;
+		int size=str.length()-1,s=0;
+		for(int i=0;i<str.length();i++) {
+			
+			if((str.charAt(i)+"").equals(str.charAt(size-s)+"")) {
+				s++;
+			
+			}
+		}
+		System.out.println((str.length()-s));
+	}}
+}
