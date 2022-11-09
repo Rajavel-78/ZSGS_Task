@@ -1,0 +1,41 @@
+public class SevenIsEnd {
+
+	public static void main(String[] args) {
+		int[] arr = { 7, 1, 7, 0, 7, 6, 7, 6, 9 };
+		SevenIsEnd seven = new SevenIsEnd();
+		seven.operation(arr);
+	}
+
+	private void operation(int[] arr) {
+
+		int value = arr.length - 1;
+		boolean left = true;
+		boolean right = true;
+		int start = 0;
+		int end = arr.length - 1;
+		while (start < end) {
+			if (arr[start] == 7) {
+				left = false;
+			}
+			if (arr[end] != 7) {
+				right = false;
+			}
+			if (left == false && right == false) {
+				int temp = arr[start];
+				arr[start] = arr[end];
+				arr[end] = temp;
+				left = true;
+				right = true;
+			}
+			if (left) {
+				start++;
+			}
+			if (right) {
+				end--;
+			}
+		}
+
+		System.out.println(Arrays.toString(arr));
+	}
+
+}
