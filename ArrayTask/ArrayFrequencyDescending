@@ -1,0 +1,66 @@
+package ZsgsPrograming;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class DesingingOrderFrequency {
+	private Scanner scan = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		DesingingOrderFrequency order = new DesingingOrderFrequency();
+
+		order.operation();
+
+	}
+
+	private void operation() {
+		System.out.println("Enter the input");
+		int output = scan.nextInt();
+		int arr[] = new int[output];
+		for (int i = 0; i < arr.length; i++) {
+			System.out.println("Enter the first input");
+			arr[i] = scan.nextInt();
+		}
+		ArrayList<Integer> element = new ArrayList<Integer>();
+		Map<Integer, Integer> element_frequency = new HashMap<Integer, Integer>();
+		for (int i = 0; i < arr.length; i++) {
+			element.add(arr[i]);
+		}
+		ArrayList<Integer> arr1 = new ArrayList<Integer>();
+		Set<Integer> remove_duplicateElement = new HashSet<Integer>(element);
+		ArrayList<Integer> order = new ArrayList<Integer>(remove_duplicateElement);
+		for (Integer i : remove_duplicateElement) {
+			int count = Collections.frequency(element, i);
+			element_frequency.put(i, count);
+			arr1.add(count);
+
+		}
+		System.out.print(element_frequency);
+		ArrayList<Integer> arr2 = new ArrayList<>(arr1);
+		Collections.sort(arr2);
+		for (int i = arr2.size() - 1; i >= 0; i--) {
+			for (int j = 0; j < arr1.size(); j++) {
+				if (arr2.get(i) == arr1.get(j)) {
+
+					for (int k = 0; k < element.size(); k++) {
+						if (order.get(j) == element.get(k)) {
+							System.out.print(element.get(k));
+							element.remove(k);
+							k--;
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+}
